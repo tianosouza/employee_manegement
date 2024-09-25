@@ -1,0 +1,54 @@
+<header class="bg-steel-blue border-gray-200 text-lime-50">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <%= link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
+      <%= image_tag 'logo', alt: 'Logo Employee Manegement', class: "h-10" %>
+      <span class="self-center hidden sm:block text-lg font-semibold whitespace-nowrap ">Employee Manegement</span>
+    <% end %>
+    <div class="flex gap-4 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <span class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <% if user_signed_in? %>
+          <% if current_user.image_url.attached? %>
+            <%= image_tag current_user.image_url, alt: "Image user #{current_user.first_name}", class: "h-10 rounded-full" %>
+          <% end %>
+        <% else %>
+          <%= image_tag "default_image", alt: "Visitant", class: "w-8 h-8 rounded-full" %>
+        <% end %>
+      </button>
+      <div class="z-50 hidden my-4 text-base list-none bg-sky-700 divide-y divide-gray-100 rounded-lg shadow " id="user-dropdown">
+        <div class="px-4 py-3">
+          <% if user_signed_in? %>
+            <span class="block text-sm text-gray-900 dark:text-white"><%= current_user.first_name.capitalize %></span>
+            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"><%= current_user.email%></span>
+          <% else %>
+            <span class="block text-sm text-gray-900 dark:text-white">
+              Log in to access the system
+            </span>        
+          <% end %>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <% if user_signed_in? %>
+            <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden">Dashboard</a>
+            </li>
+            <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden">Company</a>
+            </li>
+            <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden">Employee</a>
+            </li>
+            <li>
+              <%= link_to 'edit', edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to 'Sign out', destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
+            </li>        
+          <% else %>
+            <li>         
+              <%= link_to 'Sign in', new_user_session_path, data: { turbo_frame: "modal",molda_target: "authentication-modal", modal_toggle: "authentication-modal" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
+            </li>
+          <% end %>        
+        </ul>
+      </div>      
+    </div>
+  </div>
+</header>

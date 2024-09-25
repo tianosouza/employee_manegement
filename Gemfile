@@ -26,6 +26,7 @@ group :development, :test do
   gem "factory_bot", "~> 6.5"
   gem 'faker', '~> 3.4', '>= 3.4.2'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'byebug', '~> 11.1', '>= 11.1.3'
 end
 
 group :development do
