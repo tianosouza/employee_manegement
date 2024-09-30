@@ -4,7 +4,7 @@
       <%= image_tag 'logo', alt: 'Logo Employee Manegement', class: "h-10" %>
       <span class="self-center hidden sm:block text-lg font-semibold whitespace-nowrap ">Employee Manegement</span>
     <% end %>
-    <div class="flex gap-4 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    <div class="flex gap-4 items-center md:order-2 space-x-2 md:space-x-0 rtl:space-x-reverse">
       <span class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <% if user_signed_in? %>
           <% if current_user.image_url.attached? %>
@@ -20,8 +20,8 @@
             <span class="block text-sm text-gray-900 dark:text-white"><%= current_user.first_name.capitalize %></span>
             <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"><%= current_user.email%></span>
           <% else %>
-            <span class="block text-sm text-gray-900 dark:text-white">
-              Log in to access the system
+            <span class="block text-xs text-gray-900 dark:text-white">
+              Welcome
             </span>        
           <% end %>
         </div>
@@ -34,7 +34,7 @@
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden">Company</a>
             </li>
             <li>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden">Employee</a>
+              <%= link_to 'Employee', employees_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white sm:hidden" %>
             </li>
             <li>
               <%= link_to 'edit', edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
@@ -44,7 +44,7 @@
             </li>        
           <% else %>
             <li>         
-              <%= link_to 'Sign in', new_user_session_path, data: { turbo_frame: "modal",molda_target: "authentication-modal", modal_toggle: "authentication-modal" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
+              <%= link_to 'Sign in', new_user_session_path, data: { turbo_frame: "modal" }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-lapis-blue dark:text-gray-200 dark:hover:text-white" %>
             </li>
           <% end %>        
         </ul>
